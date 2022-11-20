@@ -1,17 +1,18 @@
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
-const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
 const categoryRoutes = require("./routes/category");
 const bannerRoutes = require("./routes/banner");
+const catalogRoutes = require("./routes/catalog");
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(fileUpload());
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -28,6 +29,7 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/banner", bannerRoutes);
+app.use("/api/v1/catalog", catalogRoutes);
 
 // app.use((req, res) => {
 //   res.send("404 PAGE NOT FOUND");
