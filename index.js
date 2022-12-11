@@ -30,6 +30,7 @@ app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/banner", bannerRoutes);
 app.use("/api/v1/catalog", catalogRoutes);
+app.use("/coba", (req, res) => res.send("Berhasil"));
 
 // app.use((req, res) => {
 //   res.send("404 PAGE NOT FOUND");
