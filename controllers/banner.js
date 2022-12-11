@@ -89,14 +89,19 @@ exports.updateBanner = (req, res) => {
         });
       } else {
         if (!req.file) {
+          console.log("tidak ada file yang masuk!");
           response.title = req.body.title;
           response.desc = req.body.desc;
           response.image = req.body.image;
         } else {
+          console.log("ada file yang masuk!");
+          console.log("FILE => ", req.file);
           const filePath = path.join(__dirname, "../", response.image);
+          console.log(filePath);
           fs.unlinkSync(filePath);
           response.title = req.body.title;
           response.desc = req.body.desc;
+          console.log(req.file);
           response.image = req.file.path;
         }
         response
